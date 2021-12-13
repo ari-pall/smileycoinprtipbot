@@ -1,6 +1,5 @@
 # this
 
-Create a personal access token. Specify the token and Github account name and repo you want it to look at...
 FIXME: description
 
 ## Installation
