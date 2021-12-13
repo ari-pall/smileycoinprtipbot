@@ -2,6 +2,7 @@
   (:gen-class)
   (:require [tentacles.issues :as ti]
             [tentacles.search :as ts]
+            [tentacles.users :as tu]
             [clojure.java.shell :only [sh] :as sh]
             ))
 
@@ -91,8 +92,10 @@
   (let [config (read-string ((sh/sh "cat" "config.edn") :out))
         strings (clojure.string/split (config :repo) #"/")
         len (count strings)
+        token (config :token)
         config (assoc config :repo-owner (strings (- len 2))
-                             :repo-name (strings (- len 1)))]
+                             :repo-name (strings (- len 1))
+                             :user ((tu/me {:oauth-token token}) :login))]
     (respond-to-mentions config)
     (respond-to-merges config)))
 
