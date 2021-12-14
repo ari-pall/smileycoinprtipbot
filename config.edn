@@ -1,5 +1,5 @@
 {:token "ghp_asdf7sa6d56d5s65d6s5f"
  :repo "https://github.com/SMLYtipbot/test"
  :pr-reward-amount 500
- :poll-time-minutes 5
+ :poll-time-minutes 60
  }
