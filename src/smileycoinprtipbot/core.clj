@@ -46,8 +46,6 @@
                                                     :merged (str ">" (get-timestamp-merges))}
                                                 {:oauth-token token})
                               :items))
-        ;; _ (spit "merges args" (str [user token pr-reward-amount repo repo-name repo-owner]))
-        ;; _ (spit "new-merges" (str new-merges))
         ]
     (doseq [pr new-merges]
       (let [pr-er (get-in pr [:user :login])
@@ -69,9 +67,6 @@
                                        {:oauth-token token})
         new-mentions (sort-by updatetimenumber
                               (search-result :items))
-        ;; _ (spit "mentions search result" (str search-result))
-        ;; _ (spit "mentions args" (str [user token pr-reward-amount repo repo-name repo-owner]))
-        ;; _ (spit "new-mentions" (str new-mentions))
         ]
     (loop [remaining-mentions new-mentions]
       (if (and (not-empty remaining-mentions)
@@ -115,6 +110,5 @@
     (loop []
       (respond-to-mentions config)
       (respond-to-merges config)
-      (spit "log" (str config))
       (Thread/sleep (* minute poll-time-minutes))
       (recur))))
